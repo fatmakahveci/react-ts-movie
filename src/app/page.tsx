@@ -20,7 +20,8 @@ const Home = (): JSX.Element => {
             releaseDate: movieData.release_date
           }
         })
-      })
+      setMovies(transformedMovies);
+    });
   }
 
   return (
