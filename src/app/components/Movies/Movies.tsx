@@ -2,6 +2,7 @@
 
 import { Movie } from '@/shared/types';
 import { FC } from "react";
+import './Movies.css';
 
 const Movie: FC<Movie> = ({ title, releaseDate, openingText}) => {
   return (
