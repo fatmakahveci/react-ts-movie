@@ -1,5 +1,9 @@
 'use client';
 
+export type AddMovieProps = {
+    onAddMovie: (movie: Movie) => void;
+};
+
 export type Movie = {
     id?:  string;
     title: string;
