@@ -15,7 +15,7 @@ const Home = (): JSX.Element => {
     setError(null);
 
     try {
-      const response = await fetch('https://swapi.dev/api/films');
+      const response = await fetch('https://react-http-71ce3-default-rtdb.firebaseio.com/movies.json');
       if (!response.ok) {
         throw new Error('Something went wrong!');
       }
