@@ -3,6 +3,7 @@
 import Movies from '@/app/components/Movies/Movies';
 import { Movie, MoviesListProps } from "@/shared/types";
 import { FC } from "react";
+import './MoviesList.css';
 
 const MoviesList: FC<MoviesListProps> = ({ movies }): JSX.Element => {
   return (
