@@ -2,28 +2,57 @@
 
 import MoviesList from '@/app/components/MoviesList/MoviesList';
 import { Movie, MovieInput } from '@/shared/types';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import './globals.css';
 
 const Home = (): JSX.Element => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error | null>(null);
 
-  async function fetchMoviesHandler() {
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
-    const response = await fetch('https://swapi.dev/api/films');
-    const data = await response.json();
+    setError(null);
 
-    const transformedMovies = data.results.map((movieData: MovieInput) => {
-      return {
-        id: movieData.id,
-        title: movieData.title,
-        openingText: movieData.opening_crawl,
-        releaseDate: movieData.release_date
+    try {
+      const response = await fetch('https://swapi.dev/api/films');
+      if (!response.ok) {
+        throw new Error('Something went wrong!');
       }
-    })
-    setMovies(transformedMovies);
+
+      const data = await response.json();
+
+      const transformedMovies = data.results.map((movieData: MovieInput) => {
+        return {
+          id: movieData.id,
+          title: movieData.title,
+          openingText: movieData.opening_crawl,
+          releaseDate: movieData.release_date
+        }
+      })
+      setMovies(transformedMovies);
+    } catch (error: any) {
+      setError(error);
+    }
     setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]);
+
+  let content = <p>Found no movies.</p>;
+
+  if (movies.length > 0) {
+    content = <MoviesList movies={movies} />;
+  }
+
+  if (error) {
+    content = <p>{error.message}</p>;
+  }
+
+  if (isLoading) {
+    content = <p>Loading...</p>;
   }
 
   return (
@@ -32,9 +61,7 @@ const Home = (): JSX.Element => {
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
       <section>
-        {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && <p>Found no movies...</p>}
-        {isLoading && <p>Loading...</p>}
+        {content}
       </section>
     </>
   )
