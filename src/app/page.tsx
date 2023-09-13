@@ -4,6 +4,7 @@ import MoviesList from '@/app/components/MoviesList/MoviesList';
 import { Movie, MovieInput } from '@/shared/types';
 import { useCallback, useEffect, useState } from 'react';
 import './globals.css';
+import AddMovie from '@/app/components/AddMovie/AddMovie';
 
 const Home = (): JSX.Element => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -20,17 +21,20 @@ const Home = (): JSX.Element => {
         throw new Error('Something went wrong!');
       }
 
-      const data = await response.json();
+      const data: any = await response.json();
 
-      const transformedMovies = data.results.map((movieData: MovieInput) => {
-        return {
-          id: movieData.id,
-          title: movieData.title,
-          openingText: movieData.opening_crawl,
-          releaseDate: movieData.release_date
-        }
-      })
-      setMovies(transformedMovies);
+      const loadedMovies: Movie[] = [];
+
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openingText: data[key].openingText,
+          releaseDate: data[key].releaseDate,
+        });
+      }
+  
+      setMovies(loadedMovies);
     } catch (error: any) {
       setError(error);
     }
@@ -40,6 +44,19 @@ const Home = (): JSX.Element => {
   useEffect(() => {
     fetchMoviesHandler();
   }, [fetchMoviesHandler]);
+
+  async function addMovieHandler(movie: Movie) {
+    const response = await fetch('https://react-http-71ce3-default-rtdb.firebaseio.com/movies.json', {
+      method: 'POST',
+      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const data = await response.json();
+    console.log(data);
+  }
 
   let content = <p>Found no movies.</p>;
 
@@ -57,6 +74,9 @@ const Home = (): JSX.Element => {
 
   return (
     <>
+      <section>
+        <AddMovie onAddMovie={addMovieHandler} />
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
       </section>
