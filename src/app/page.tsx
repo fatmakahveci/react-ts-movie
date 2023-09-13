@@ -1,7 +1,7 @@
 'use client';
 
 import MoviesList from '@/app/components/MoviesList/MoviesList';
-import { Movie, MovieInput } from '@/shared/types';
+import { Movie } from '@/shared/types';
 import { useCallback, useEffect, useState } from 'react';
 import './globals.css';
 import AddMovie from '@/app/components/AddMovie/AddMovie';
@@ -21,7 +21,7 @@ const Home = (): JSX.Element => {
         throw new Error('Something went wrong!');
       }
 
-      const data: any = await response.json();
+      const data: Movie[] = await response.json();
 
       const loadedMovies: Movie[] = [];
 
