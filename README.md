@@ -1,51 +1,59 @@
-# Getting Started with Create React App
+# React Movie Library
 
 [![React](https://img.shields.io/badge/React-TypeScript-149ECA?logo=react&logoColor=white)](https://react.dev/)
-[![Create React App](https://img.shields.io/badge/Tooling-Create%20React%20App-09D3AC?logo=createreactapp&logoColor=white)](https://create-react-app.dev/)
+[![Next.js](https://img.shields.io/badge/Next.js-React-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Last commit](https://img.shields.io/github/last-commit/fatmakahveci/react-ts-movie)](https://github.com/fatmakahveci/react-ts-movie/commits/main)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE.md)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Next.js learning project for creating and retrieving movie records through a Firebase Realtime Database API.
 
-## Available Scripts
+## Highlights
 
-In the project directory, you can run:
+- Fetch and render movie records from Firebase
+- Submit new movies through a typed form
+- Dedicated loading, empty, and error states
+- Reusable movie list and form components
 
-### `npm start`
+## Technology
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Next.js
+- React
+- TypeScript
+- Firebase Realtime Database
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js 20 or newer
+- npm
+- Access to the configured Firebase database
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+npm install
+npm run dev
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Open http://localhost:3000. The current learning implementation references a Firebase endpoint in `src/app/page.tsx`; use your own backend before production deployment.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Quality Checks
 
-### `npm run eject`
+```bash
+npm run lint
+npm run build
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Repository Structure
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `src/app/components/AddMovie` — movie submission form
+- `src/app/components/MoviesList` — movie collection rendering
+- `src/shared` — shared movie types and constants
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Project Resources
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [Changelog](CHANGELOG.md)
+- [Contributing guide](.github/CONTRIBUTING.md)
+- [Security policy](.github/SECURITY.md)
+- [License](LICENSE.md)
