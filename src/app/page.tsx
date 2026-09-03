@@ -46,7 +46,7 @@ const Home = (): JSX.Element => {
   }, [fetchMoviesHandler]);
 
   async function addMovieHandler(movie: Movie) {
-    const response = await fetch('https://react-http-71ce3-default-rtdb.firebaseio.com/movies.json', {
+    await fetch('https://react-http-71ce3-default-rtdb.firebaseio.com/movies.json', {
       method: 'POST',
       body: JSON.stringify(movie),
       headers: {
@@ -54,8 +54,6 @@ const Home = (): JSX.Element => {
       }
     });
 
-    const data = await response.json();
-    console.log(data);
   }
 
   let content = <p>Found no movies.</p>;
