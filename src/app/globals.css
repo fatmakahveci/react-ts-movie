@@ -1,42 +1,340 @@
+:root {
+  --accent: #7c3aed;
+  --accent-strong: #4c1d95;
+  --border: #ded7e4;
+  --danger: #b42318;
+  --ink: #261b2f;
+  --muted: #6e6476;
+  --page: #171020;
+  --surface: #ffffff;
+  --surface-soft: #faf8fb;
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    font-family: sans-serif;
+  min-width: 320px;
+  background: var(--page);
+  color-scheme: light;
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 body {
-    margin: 0;
-    background-color: #272727;
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 88% 5%, rgb(124 58 237 / 27%), transparent 30rem),
+    radial-gradient(circle at 8% 95%, rgb(91 33 182 / 20%), transparent 30rem),
+    var(--page);
 }
 
-section {
-    margin: 1rem auto;
-    width: 90%;
-    max-width: 40rem;
-    text-align: center;
-    background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
+button,
+input,
+textarea {
+  font: inherit;
 }
 
-button {
-    font: inherit;
-    cursor: pointer;
-    background: #230052;
-    border: 1px solid #230052;
-    color: white;
-    padding: 0.75rem 2rem;
-    border-radius: 20px;
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgb(167 139 250 / 55%);
+  outline-offset: 3px;
 }
 
-button:focus {
-    outline: none;
+.appShell {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(2rem, 6vw, 5rem) 0 2rem;
 }
 
-button:hover,
-button:active {
-    background-color: #460897;
-    border-color: #460897;
+.hero {
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.eyebrow,
+.sectionKicker {
+  color: #c4b5fd;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  margin: 0 0 0.6rem;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(2.35rem, 6vw, 4.8rem);
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+  margin: 0;
+}
+
+.heroCopy {
+  color: #d8d0de;
+  line-height: 1.65;
+  margin: 1rem 0 0;
+  max-width: 40rem;
+}
+
+.libraryStat {
+  min-width: 9.5rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 8%);
+  backdrop-filter: blur(12px);
+  padding: 1rem 1.2rem;
+  text-align: right;
+}
+
+.libraryStat strong {
+  display: block;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.libraryStat span {
+  color: #d8d0de;
+  display: block;
+  font-size: 0.72rem;
+  margin-top: 0.4rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: minmax(19rem, 0.82fr) minmax(0, 1.18fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.panel {
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 1.4rem;
+  background: var(--surface);
+  box-shadow: 0 30px 70px rgb(5 2 8 / 26%);
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.sectionHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sectionKicker {
+  color: var(--accent);
+}
+
+.sectionHeading h2 {
+  color: var(--ink);
+  font-size: 1.55rem;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+
+.stepBadge {
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  background: #f1eafe;
+  color: var(--accent-strong);
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  font-weight: 850;
+}
+
+.libraryHeading {
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.secondaryButton {
+  min-height: 2.6rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--accent-strong);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  font-weight: 750;
+  padding: 0.65rem 0.9rem;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.secondaryButton:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: #f8f4ff;
+}
+
+.secondaryButton:disabled {
+  cursor: wait;
+  opacity: 0.58;
+}
+
+.announcements:empty {
+  display: none;
+}
+
+.notice {
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 1rem 0;
+  padding: 0.8rem 0.9rem;
+}
+
+.notice--success {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.notice--warning {
+  background: #fffaeb;
+  color: #93370d;
+}
+
+.notice--error {
+  background: #fef3f2;
+  color: #b42318;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.notice--error button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  flex: 0 0 auto;
+  font-weight: 800;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.movieSkeletons {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.25rem;
+}
+
+.movieSkeletons span {
+  height: 7rem;
+  border-radius: 1rem;
+  background: linear-gradient(90deg, #f2eff5 25%, #faf8fb 50%, #f2eff5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+
+.emptyState {
+  border: 1px dashed #cfc5d7;
+  border-radius: 1rem;
+  margin-top: 1.25rem;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.emptyStateIcon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #f1eafe;
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem;
+  padding-left: 0.15rem;
+}
+
+.emptyState h3 {
+  color: var(--ink);
+  margin: 0;
+}
+
+.emptyState p {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  margin: 0.5rem auto 0;
+  max-width: 20rem;
+}
+
+footer {
+  color: #a99eaf;
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+  font-size: 0.75rem;
+  padding: 1.75rem 1rem 0;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .appShell {
+    width: min(100% - 1rem, 40rem);
+    padding-top: 1.5rem;
+  }
+
+  .hero {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .libraryStat {
+    text-align: left;
+  }
+
+  .panel {
+    border-radius: 1rem;
+  }
+
+  .libraryHeading {
+    align-items: flex-start;
+  }
+
+  .notice--error,
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secondaryButton {
+    transition: none;
+  }
+
+  .movieSkeletons span {
+    animation: none;
+  }
 }

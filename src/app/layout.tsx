@@ -1,14 +1,16 @@
-import { ReactNode } from 'react'
-import './globals.css'
+import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
+import './globals.css';
 
-export default function RootLayout({
-  children,
-}: {
-  children: ReactNode
-}) {
+export const metadata: Metadata = {
+  title: 'React Movie Library',
+  description: 'Browse and add movie records with a responsive Next.js interface.',
+};
+
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en">
-      <body className="{body}">{children}</body>
+      <body>{children}</body>
     </html>
-  )
+  );
 }

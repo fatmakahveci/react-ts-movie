@@ -1,21 +1,15 @@
 'use client';
 
-import Movies from '@/app/components/Movies/Movies';
-import { Movie, MoviesListProps } from "@/shared/types";
-import { FC } from "react";
+import MovieCard from '@/app/components/Movies/Movies';
+import type { MoviesListProps } from '@/shared/types';
 import './MoviesList.css';
 
-const MoviesList: FC<MoviesListProps> = ({ movies }): JSX.Element => {
-  return (
-    <ul className="movies-list">
-        {movies.map((movie: Movie) => (
-            <Movies
-                title={movie.title}
-                releaseDate={movie.releaseDate}
-                openingText={movie.openingText}
-            />
-        ))}
-    </ul>
-  )
-}
+const MoviesList = ({ movies }: MoviesListProps): JSX.Element => (
+  <ul className="moviesGrid" aria-label="Saved movies">
+    {movies.map((movie) => (
+      <MovieCard key={movie.id} {...movie} />
+    ))}
+  </ul>
+);
+
 export default MoviesList;

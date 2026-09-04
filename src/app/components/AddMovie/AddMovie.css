@@ -1,26 +1,153 @@
-.control {
-    margin: 1rem 0;
+.movieForm {
+  display: grid;
+  gap: 1.25rem;
 }
 
-.control label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    text-align: left;
+.fieldGroup {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
-.control input,
-.control textarea {
-    display: block;
+.fieldGroup label {
+  color: var(--ink);
+  font-size: 0.88rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+}
+
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.labelRow span {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.fieldGroup input,
+.fieldGroup textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  background: var(--surface-soft);
+  color: var(--ink);
+  font: inherit;
+  line-height: 1.5;
+  padding: 0.8rem 0.9rem;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.fieldGroup textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.fieldGroup input::placeholder,
+.fieldGroup textarea::placeholder {
+  color: #8a8192;
+}
+
+.fieldGroup input:hover,
+.fieldGroup textarea:hover {
+  border-color: #b9adca;
+}
+
+.fieldGroup input:focus,
+.fieldGroup textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgb(124 58 237 / 12%);
+  outline: none;
+}
+
+.fieldGroup input[aria-invalid='true'],
+.fieldGroup textarea[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.fieldError {
+  color: var(--danger);
+  font-size: 0.78rem;
+  margin: 0;
+}
+
+.formFooter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 1rem;
+}
+
+.primaryButton {
+  min-height: 3rem;
+  min-width: 10.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: 0 12px 24px rgb(76 29 149 / 22%);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 750;
+  padding: 0.75rem 1.25rem;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+
+.primaryButton:hover:not(:disabled) {
+  box-shadow: 0 16px 30px rgb(76 29 149 / 30%);
+  transform: translateY(-2px);
+}
+
+.primaryButton:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.buttonSpinner {
+  width: 0.9rem;
+  height: 0.9rem;
+  border: 2px solid rgb(255 255 255 / 42%);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .formFooter {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryButton {
     width: 100%;
-    font: inherit;
-    padding: 0.2rem;
-    border-radius: 12px;
-    border: 1px solid #ccc;
+  }
 }
 
-.control input:focus,
-.control textarea:focus {
-    outline: none;
-    border-color: #230052;
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .fieldGroup input,
+  .fieldGroup textarea {
+    transition: none;
+  }
+
+  .buttonSpinner {
+    animation-duration: 1.5s;
+  }
 }
