@@ -7,6 +7,12 @@
 
 A Next.js learning project for creating and retrieving movie records through a Firebase Realtime Database API.
 
+## Demo
+
+![Animated conceptual walkthrough of React Movie Library loading movies, adding Arrival, and refreshing the collection](demo.gif)
+
+The walkthrough uses fictional data to illustrate the core fetch, add, and refresh flow without writing to the configured Firebase database.
+
 ## Highlights
 
 - Fetch and render movie records from Firebase
