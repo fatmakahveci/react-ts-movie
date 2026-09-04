@@ -59,13 +59,13 @@ test('getMovies performs a typed GET request and parses the response', async () 
     assert.equal(String(input), 'https://movies.example/movies.json');
     assert.equal(init?.method, 'GET');
     assert.equal((init?.headers as Record<string, string>).Accept, 'application/json');
-    return Response.json({
+    return new Response(JSON.stringify({
       movie: {
         title: 'Arrival',
         openingText: 'First contact.',
         releaseDate: '2016-11-11',
       },
-    });
+    }), { headers: { 'Content-Type': 'application/json' } });
   }) as typeof fetch;
 
   const movies = await getMovies({
@@ -92,7 +92,9 @@ test('createMovie sends normalized JSON and reports HTTP failures', async () => 
       (init?.headers as Record<string, string>)['Content-Type'],
       'application/json',
     );
-    return Response.json({ name: 'generated-id' });
+    return new Response(JSON.stringify({ name: 'generated-id' }), {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }) as typeof fetch;
 
   await createMovie(movie, {
